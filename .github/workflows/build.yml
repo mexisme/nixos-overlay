@@ -4,6 +4,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - uses: actions/checkout@v2.3.4
 
@@ -13,6 +14,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-20.09
 
       - name: "Set up t2linux binary cache"
+        if: "!contains(github.event.head_commit.message, '[no cache]')"
         uses: cachix/cachix-action@v10
         with:
           name: t2linux
