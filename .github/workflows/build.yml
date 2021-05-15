@@ -18,6 +18,8 @@ jobs:
           name: t2linux
 
       - name: "Build kernel, modules and firmware"
+        env:
+          NIXPKGS_ALLOW_UNFREE: "1"
         run: |
           ./build.sh
 
